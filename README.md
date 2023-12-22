@@ -1,2 +1,2 @@
 # Beeper
-A web-site, for posting beeps, you can follow other users
+A web-site, for posting beeps, where you can follow other users
