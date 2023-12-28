@@ -18,7 +18,7 @@ def meep_like(request, pk):
 			meep.likes.add(request.user)
 		return redirect(request.META.get("HTTP_REFERER"))
 	else:
-		messages.success(request, ("You Must Be Logged In To View That Page..."))
+		messages.success(request, ("You Must Be Logged In To Like This Meep..."))
 		return redirect('home')
 
 
