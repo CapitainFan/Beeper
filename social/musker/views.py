@@ -1,11 +1,28 @@
-from django.shortcuts import render, redirect
+from django import forms
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from django import forms
+from django.shortcuts import render, redirect
 
 from .models import Profile, Meep
 from .forms import  MeepForm, SignUpForm
+
+
+def update_user(request):
+	if request.user.is_authenticated:
+		current_user = User.objects.get(id=request.user.id)
+		form = SignUpForm(request.POST or None, instance=current_user)
+		if form.is_valid():
+			form.save()
+			login(request, current_user)
+			messages.success(request, ("Your Profile Has Been Updated!"))
+			return redirect('home')
+
+		return render(request, "update_user.html", {'form':form})
+	else:
+		messages.success(request, ("You Must Be Logged In To View That Page..."))
+		return redirect('home')
 
 
 def register_user(request):
