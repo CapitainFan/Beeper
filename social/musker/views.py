@@ -9,7 +9,23 @@ from .forms import  MeepForm, SignUpForm
 
 
 def register_user(request):
-	return render(request, "register.html", {})
+	form = SignUpForm()
+	if request.method == "POST":
+		form = SignUpForm(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data['username']
+			password = form.cleaned_data['password1']
+			# first_name = form.cleaned_data['first_name']
+			# second_name = form.cleaned_data['second_name']
+			# email = form.cleaned_data['email']
+			# Log in user
+			user = authenticate(username=username, password=password)
+			login(request,user)
+			messages.success(request, ("You have successfully registered! Welcome!"))
+			return redirect('home')
+
+	return render(request, "register.html", {'form':form})
 
 
 def login_user(request):
