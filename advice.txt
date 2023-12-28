@@ -3,6 +3,7 @@ source venv/bin/activate
 
 export PYTHONPATH=$PYTHONPATH:/Users/nikitagudkov/documents/dev/Meeper/venv/lib/python3.9/site-packages
 
+sc social
 python manage.py makemigrations
 python manage.py migrate
-
+python manage.py runserver
