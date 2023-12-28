@@ -2,11 +2,9 @@
 {% load static %}
 {% block content %}
 
-
 	<div class="container text-center">
 		<div class="row">
 			<div class="col-8">
-
 
 	<h1>Meeps!</h1>
 <br/>
@@ -25,9 +23,15 @@
 					<div class="col-11">
 						{{ meep.body }}<br/>
 		  				<small class="text-muted">
-		  					({{ meep.created_at}}) By 
+		  					({{ meep.created_at}}) By
 		  					@{{ meep.user.username }}
-		  				</small>
+							- {{ meep.number_of_likes }} Likes - 
+
+							{% if user in meep.likes.all %}
+							<a href="{% url 'meep_like' meep.id %}">UnLike</a>
+							{% else %}
+								<a href="{% url 'meep_like' meep.id %}">Like</a>
+							{% endif %}		  				</small>
 					</div>
 
 					<br/><br/>

@@ -1,0 +1,2 @@
+1. if user is not authenticated, to move all meeps to the midle of the page
+2. remove your profile from follows and followed_by lists
