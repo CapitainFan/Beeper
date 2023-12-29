@@ -12,8 +12,12 @@ class Meep(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	likes = models.ManyToManyField(User, related_name="meep_like", blank=True)
 
+
+	# Keep track or count of likes
 	def number_of_likes(self):
 		return self.likes.count()
+
+
 
 	def __str__(self):
 		return(
@@ -33,7 +37,12 @@ class Profile(models.Model):
 	
 	date_modified = models.DateTimeField(User, auto_now=True)	
 	profile_image = models.ImageField(null=True, blank=True, upload_to="images/")
-
+	
+	profile_bio = models.CharField(null=True, blank=True, max_length=500)
+	homepage_link = models.CharField(null=True, blank=True, max_length=100)
+	facebook_link = models.CharField(null=True, blank=True, max_length=100)
+	instagram_link = models.CharField(null=True, blank=True, max_length=100) 
+	telegram_link = models.CharField(null=True, blank=True, max_length=100)
 	
 	def __str__(self):
 		return self.user.username
