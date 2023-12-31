@@ -109,6 +109,10 @@
 						{% endfor %}
 					</p>
 				</div>
+
+				<div class="card-footer text-end">
+					<a href="{% url 'follows' profile.user.id %}" class="btn btn-small btn-outline-secondary" >See All...</a>
+				</div>
 			</div>
 
 			<br/><br/>
@@ -118,7 +122,8 @@
   				<h5 class="card-header">Followed By</h5>
   				<div class="card-body">
     				<p class="card-text">
-						{% for following in profile.followed_by.all|slice:3 %}							<a href="{% url 'profile' following.user.id %}">@{{ following }}</a>
+						{% for following in profile.followed_by.all|slice:3 %}
+							<a href="{% url 'profile' following.user.id %}">@{{ following }}</a>
 							&nbsp;&nbsp;
 
 							{% if profile.pk == user.pk %}
@@ -131,15 +136,13 @@
 
 							<br/>
 						{% endfor %}
-
-						<br/>
-
-						<div class="card-footer">
-							<a href="{% url 'followers' profile.user.id %}">See All...</a>
-						</div>
-
-    				</p>
-  				</div>
+					</p>
+						
+				</div>
+				
+				<div class="card-footer text-end">
+					<a href="{% url 'followers' profile.user.id %}" class="btn btn-small btn-outline-secondary" >See All...</a>
+				</div>
 			</div>
 
 
