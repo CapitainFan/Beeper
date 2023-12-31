@@ -1,4 +1,7 @@
-likes withous updating the page
+add search meeps
+add search users
+add count of followers and follows
 users pics
 fix the forms
-add link to the pics on meeps
+add comments to the meeps
+likes withous updating the page
