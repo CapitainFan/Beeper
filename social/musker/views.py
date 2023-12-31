@@ -20,7 +20,7 @@ def meep_show(request, pk):
 			return redirect('home')
 
 	else:
-		messages.success(request, ("You Must Be Logged In To Like This Meep..."))
+		messages.success(request, ("You Must Be Logged In To View That Page..."))
 		return redirect('home')
 
 
