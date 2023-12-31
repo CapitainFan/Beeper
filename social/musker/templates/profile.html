@@ -100,13 +100,16 @@
     				<p class="card-text">
     					{% for following in profile.follows.all %}
 						<a href="{% url 'profile' following.user.id %}">@{{ following }}</a> &nbsp;&nbsp;
+						{% if profile.pk == user.pk %}
 						<a href="{% url 'unfollow' following.user.id %}"><i class="fa fa-user-minus small" style="color:gray"></i></a>
-							<br/>
+						<br/>
+						{% else %}
+						<br/>
+						{% endif %}
 						{% endfor %}
 					</p>
 				</div>
 			</div>
-
 
 			<br/><br/>
 
@@ -115,19 +118,26 @@
   				<h5 class="card-header">Followed By</h5>
   				<div class="card-body">
     				<p class="card-text">
-    					{% for following in profile.followed_by.all %}
-							<a href="{% url 'profile' following.user.id %}">@{{ following }}</a>
+						{% for following in profile.followed_by.all|slice:3 %}							<a href="{% url 'profile' following.user.id %}">@{{ following }}</a>
 							&nbsp;&nbsp;
 
-							{% if following not in profile.follows.all %}
-						 		<a href="{% url 'follow' following.user.id %}"><i class="fa fa-user-plus small" style="color:gray"></i></a>
+							{% if profile.pk == user.pk %}
+								{% if following in profile.follows.all %}
+									<a href="{% url 'unfollow' following.user.id %}"><i class="fa fa-user-minus small" style="color:gray"></i></a>
+								{% else %}
+									<a href="{% url 'follow' following.user.id %}"><i class="fa fa-user-plus small" style="color:gray"></i></a>
+								{% endif %}
 							{% endif %}
-	
-							<!-- <a href="{% url 'unfollow' following.user.id %}"><i class="fa fa-user-minus small" style="color:gray"></i></a> -->
-
 
 							<br/>
 						{% endfor %}
+
+						<br/>
+
+						<div class="card-footer">
+							<a href="{% url 'followers' profile.user.id %}">See All...</a>
+						</div>
+
     				</p>
   				</div>
 			</div>
