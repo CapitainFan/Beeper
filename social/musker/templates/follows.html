@@ -2,12 +2,13 @@
 {% load static %}
 
 {% block content %}
-	<h1>{{ request.user.username }} is Following...</h1>
+	<h1> {{profiles.user.username}} is Following...</h1>
 <br/>
 
 {% if profiles %}
 
 	{% for profile in profiles.follows.all %}
+  {% if profile.pk is not profiles.pk %}
 
 		<div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
@@ -45,6 +46,7 @@
 </div>
 <br/><br/>
 
+{% endif %}
 
 
 	{% endfor %}
