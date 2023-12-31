@@ -39,7 +39,7 @@
           <li class="nav-link navbar-brand">
             <a href="{% url 'profile' request.user.id %}">
         {% if user.profile.profile_image %}
-          <img src="{{ user.profile.profile_image.url }}" class="rounded-circle" width=30 height=30>
+          <img src="{{ user.profile.profile_image.url }}" class="rounded-circle" width=40 height=40>
         {% else %}
           <img src="{% static 'images/default_profile_pic.png' %}" class="img-fluid rounded-circle" alt="Profile Image" width=30>
         {% endif %}

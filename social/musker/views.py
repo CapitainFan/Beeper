@@ -205,3 +205,20 @@ def follows(request, pk):
 		return redirect('home')
 
 
+def delete_meep(request, pk):
+	if request.user.is_authenticated:
+		meep = get_object_or_404(Meep, id=pk)
+		# Check to see if you own the meep
+		if request.user.username == meep.user.username:
+			# Delete The Meep
+			meep.delete()
+
+			messages.success(request, ("The Meep Has Been Deleted!"))
+			return redirect(request.META.get("HTTP_REFERER"))	
+		else:
+			messages.success(request, ("You Don't Own That Meep!!"))
+			return redirect('home')
+
+	else:
+		messages.success(request, ("Please Log In To Continue..."))
+		return redirect(request.META.get("HTTP_REFERER"))
