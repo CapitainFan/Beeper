@@ -105,7 +105,7 @@
   				<h5 class="card-header">Follows</h5>
   				<div class="card-body">
     				<p class="card-text">
-    					{% for following in profile.follows.all %}
+    					{% for following in profile.follows.all|slice:4 %}
 						{% if profile.pk is not following.pk %}
 						<a href="{% url 'profile' following.user.id %}">@{{ following }}</a> &nbsp;&nbsp;
 						{% if profile.pk == user.pk %}
@@ -131,7 +131,7 @@
   				<h5 class="card-header">Followed By</h5>
   				<div class="card-body">
     				<p class="card-text">
-						{% for following in profile.followed_by.all|slice:3 %}						
+						{% for following in profile.followed_by.all|slice:4 %}						
 
 						{% if profile.pk is not following.pk %}
 							<a href="{% url 'profile' following.user.id %}">@{{ following }}</a>
