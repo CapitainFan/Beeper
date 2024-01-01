@@ -1,7 +1,5 @@
-add search meeps
-add search users
 add count of followers and follows
 users pics
-fix the forms
+fix the forms on update user page
 add comments to the meeps
 likes withous updating the page

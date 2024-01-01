@@ -16,7 +16,7 @@
 
 <br/><br/>
 
-{% if search %}
+{% if searched %}
 <h3>You Searched For: {{ search }}</h3>
 <br/>
 
@@ -68,6 +68,13 @@
 	</div>
 </div>
 {% endfor %}
+
+{% else %}
+
+{% if searched == None %}
+{% else %}
+<h3> Sorry, No Meeps Exist with {{ search }}, Try Again ... </h2>
+{% endif %}
 
 {% endif %}
 

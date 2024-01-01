@@ -10,7 +10,8 @@ from .forms import  MeepForm, SignUpForm, ProfilePicForm
 
 
 def meep_show(request, pk):
-	if request.user.is_authenticated:
+	if True:
+	# if request.user.is_authenticated:
 		meep = get_object_or_404(Meep, id=pk)
 
 		if meep:
@@ -19,9 +20,9 @@ def meep_show(request, pk):
 			messages.success(request, ("That Meep Does Not Exist..."))
 			return redirect('home')
 
-	else:
-		messages.success(request, ("You Must Be Logged In To View That Page..."))
-		return redirect('home')
+	# else:
+	# 	messages.success(request, ("You Must Be Logged In To View That Page..."))
+	# 	return redirect('home')
 
 
 def meep_like(request, pk):
@@ -253,24 +254,32 @@ def edit_meep(request,pk):
 
 
 def search(request):
-	if request.method == "POST":
-		# Grab the form field input
-		search = request.POST['search']
-		# Search the database
-		searched = Meep.objects.filter(body__contains = search)
+	if request.user.is_authenticated:
+		if request.method == "POST":
+			# Grab the form field input
+			search = request.POST['search']
+			# Search the database
+			searched = Meep.objects.filter(body__contains = search)
 
-		return render(request, 'search.html', {'search':search, 'searched':searched})
+			return render(request, 'search.html', {'search':search, 'searched':searched})
+		else:
+			return render(request, 'search.html', {})
 	else:
-		return render(request, 'search.html', {})
+		messages.success(request, ("You Must Be Logged In To View This Page..."))
+		return redirect('home')
 
 
 def search_user(request):
-	if request.method == "POST":
-		# Grab the form field input
-		search = request.POST['search']
-		# Search the database
-		searched = User.objects.filter(username__contains = search)
+	if request.user.is_authenticated:
+		if request.method == "POST":
+			# Grab the form field input
+			search = request.POST['search']
+			# Search the database
+			searched = User.objects.filter(username__contains = search)
 
-		return render(request, 'search_user.html', {'search':search, 'searched':searched})
+			return render(request, 'search_user.html', {'search':search, 'searched':searched})
+		else:
+			return render(request, 'search_user.html', {})
 	else:
-		return render(request, 'search_user.html', {})
+		messages.success(request, ("You Must Be Logged In To View This Page..."))
+		return redirect('home')

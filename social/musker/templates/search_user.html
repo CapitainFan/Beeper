@@ -43,9 +43,13 @@
 <br/><br/>
 {% endfor %}
 
-<!-- {% else %}
+{% else %}
 
-<h3> Sorry, No Users Exist with Name {{ search }}, Try Again ... </h2> -->
+{% if searched == None %}
+{% else %}
+<h3> Sorry, No Users Exist with Name {{ search }}, Try Again ... </h2>
+{% endif %}
+
 
 {% endif %}
 
