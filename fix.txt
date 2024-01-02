@@ -1,4 +1,3 @@
-add count of followers and follows
 users pics
 fix the forms on update user page
 add comments to the meeps

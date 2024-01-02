@@ -3,9 +3,9 @@
 
 {% block content %}
 {% if profiles.pk is user.pk %}
-  <h1>Your Followers</h1>
+  <h1>Your Followers are {{ followers }} People</h1>
 {% else %}
-	<h1>{{profiles.user.username}}'s Followers</h1>
+	<h1>{{profiles.user.username}}'s Followers are {{ followers }} People</h1>
 {% endif %}
 
 <br/>

@@ -131,6 +131,8 @@ def profile(request, pk):
 	if request.user.is_authenticated:
 		profile = Profile.objects.get(user_id=pk)
 		meeps = Meep.objects.filter(user_id=pk).order_by("-created_at")
+		follows = profile.get_count_of_follows()
+		followers = profile.get_count_of_followers()
 
 		# Post Form logic
 		if request.method == "POST":
@@ -146,7 +148,7 @@ def profile(request, pk):
 			# Save the profile
 			current_user_profile.save()
 
-		return render(request, "profile.html", {"profile":profile, "meeps":meeps})
+		return render(request, "profile.html", {"profile":profile, "meeps":meeps, "follows":follows, "followers":followers})
 	else:
 		messages.success(request, ("You Must Be Logged In To View This Page..."))
 		return redirect('home')
@@ -191,7 +193,8 @@ def follow(request, pk):
 def followers(request, pk):
 	if request.user.is_authenticated:
 		profiles = Profile.objects.get(user_id=pk)
-		return render(request, 'followers.html', {"profiles":profiles})
+		followers = profiles.get_count_of_followers()
+		return render(request, 'followers.html', {"profiles":profiles, "followers":followers})
 	else:
 		messages.success(request, ("You Must Be Logged In To View This Page..."))
 		return redirect('home')
@@ -200,7 +203,8 @@ def followers(request, pk):
 def follows(request, pk):
 	if request.user.is_authenticated:
 		profiles = Profile.objects.get(user_id=pk)
-		return render(request, 'follows.html', {"profiles":profiles})
+		follows = profiles.get_count_of_follows()
+		return render(request, 'follows.html', {"profiles":profiles, "follows":follows})
 	else:
 		messages.success(request, ("You Must Be Logged In To View This Page..."))
 		return redirect('home')

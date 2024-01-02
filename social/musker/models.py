@@ -44,6 +44,12 @@ class Profile(models.Model):
 	instagram_link = models.CharField(null=True, blank=True, max_length=100) 
 	telegram_link = models.CharField(null=True, blank=True, max_length=100)
 	
+	def get_count_of_followers(self):
+		return self.followed_by.count() - 1
+
+	def get_count_of_follows(self):
+		return self.follows.count() - 1
+
 	def __str__(self):
 		return self.user.username
 

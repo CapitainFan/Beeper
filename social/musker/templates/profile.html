@@ -100,7 +100,6 @@
 
 			<br/><br/>
 
-
 			<div class="card">
   				<h5 class="card-header">Follows</h5>
   				<div class="card-body">
@@ -122,6 +121,10 @@
 				<div class="card-footer text-end">
 					<a href="{% url 'follows' profile.user.id %}" class="btn btn-small btn-outline-secondary">See All...</a>
 				</div>
+
+				<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+					{{ follows }}
+				</span>
 			</div>
 
 			<br/><br/>
@@ -156,6 +159,11 @@
 				<div class="card-footer text-end">
 					<a href="{% url 'followers' profile.user.id %}" class="btn btn-small btn-outline-secondary" >See All...</a>
 				</div>
+
+				<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+					{{ followers }}
+				</span>
+
 			</div>
 
 
