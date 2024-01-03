@@ -1,3 +1,2 @@
-fix the forms on update user page
 add comments to the meeps
 likes withous updating the page
